@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Playlist Information</title>
+	</head>
+	<body>
+		<h1>Playlist Information</h1>
+		<form method="post" action="/">
+			<label for="youtube_playlist">Enter YouTube Playlist ID:</label>
+			<input type="text" id="youtube_playlist" name="youtube_playlist" required />
+
+			<label for="spotify_playlist">Enter Spotify Playlist ID:</label>
+			<input type="text" id="spotify_playlist" name="spotify_playlist" required />
+
+			<button type="submit">Search</button>
+		</form>
+
+		{% if playlist_tracks %}
+		<h2>Tracks in Playlist:</h2>
+		<ul>
+			{% for track in playlist_tracks %}
+			<li>{{ track['name'] }}, {{ track['artists'][0]['name'] }}</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No playlist information available. Please enter a playlist ID.</p>
+		{% endif %}
+	</body>
+</html>
